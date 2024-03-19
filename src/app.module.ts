@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pokemon } from './pokemon/entities/pokemon.entity';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { TrainersModule } from './trainers/trainers.module';
+import { Trainer } from './trainers/entities/trainer.entity';
+
 
 @Module({
   imports: [
@@ -12,10 +15,11 @@ import { PokemonModule } from './pokemon/pokemon.module';
       username: 'postgres',
       password: 'postgres',
       database: 'pokemaiac',
-      entities: [Pokemon],
+      entities: [Pokemon, Trainer],
       synchronize: true,
     }),
-    PokemonModule, // Importar PokemonModule aquí
+    PokemonModule,
+    TrainersModule, // Importar PokemonModule aquí
   ],
 })
 export class AppModule {}

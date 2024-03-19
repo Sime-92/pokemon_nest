@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Trainer } from '../../trainers/entities/trainer.entity'
 
 @Entity()
 export class Pokemon {
@@ -25,4 +26,7 @@ export class Pokemon {
 
     @Column('text', { nullable: true })
     description: string; // A brief description of the Pokemon
+
+    @ManyToOne(() => Trainer, trainer => trainer.pokemonTeam)
+    trainer: Trainer;
 }
